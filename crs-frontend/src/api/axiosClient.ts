@@ -1,11 +1,18 @@
-// path: crs-frontend/src/api/axiosClient.ts
 import axios from 'axios';
 
 const axiosClient = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL, // Tự động lấy đường link từ file .env lúc nãy
+    baseURL: import.meta.env.VITE_API_BASE_URL,
     headers: {
         'Content-Type': 'application/json',
     },
+});
+
+axiosClient.interceptors.request.use((config) => {
+    const token = localStorage.getItem('crs_token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
 });
 
 export default axiosClient;

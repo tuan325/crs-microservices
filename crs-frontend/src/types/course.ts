@@ -1,4 +1,3 @@
-// path: crs-frontend/src/types/course.ts
 export interface Course {
     id: number;
     tenMonHoc: string;
@@ -7,11 +6,22 @@ export interface Course {
     soChoConLai: number;
 }
 
-// Khop voi cau truc Page<CourseDTO> ma Spring Data JPA tra ve
 export interface PagedResponse<T> {
     content: T[];
-    totalElements: number;
     totalPages: number;
-    number: number;
+    totalElements: number;
     size: number;
+    number: number;
 }
+
+export interface CourseFormValues {
+    tenMonHoc: string;
+    soTinChi: string; // dung string trong form de de kiem soat input rong
+    soChoToiDa: string;
+}
+
+export const emptyCourseForm: CourseFormValues = {
+    tenMonHoc: '',
+    soTinChi: '',
+    soChoToiDa: '',
+};
